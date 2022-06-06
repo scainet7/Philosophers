@@ -1,63 +1,52 @@
 #include "philo.h"
 
-static void ft_init_philo(t_parametrs *params, int j, t_data *data)
+static void ft_init_philo(t_p *params, int j)
 {
-	params->index = j + 1;
-	params->count_eat = 0;
-	params->time_meal = 0;
-	params->data = data;
 
+	params->id = j;
+	params->fork_r = j;
+	printf("%d\n", j);
+	if (j == (params->philo - 1))
+		params->fork_l = 0;
+	else
+		params->fork_l = j + 1;
+	pthread_create(&params->flow[j], NULL, ft_philo_process, params);
+	pthread_mutex_lock(&params->mutex[params->philo]);
 }
 
-static int ft_init_args(int argc, char **argv, t_data **data)
+static int ft_init_args(int argc, char **argv, t_p *params)
 {
-	t_data *tmp;
-	tmp = (t_data *) malloc(sizeof (t_data));
-	if (!data)
-		return (-1);
-	tmp->philosophers = ft_atoi(argv[1]);
-	tmp->nums_forks = tmp->philosophers;
-	tmp->time_die = ft_atoi(argv[2]);
-	tmp->time_eat = ft_atoi(argv[3]);
-	tmp->time_sleep = ft_atoi(argv[4]);
-	tmp->nums_eat = 0;
-	if (tmp->philosophers < 1 || tmp->time_die < 1 || tmp->time_sleep < 1 ||
-	tmp->time_eat < 1)
-	{
-		free(tmp);
-		return (-1);
-	}
+	int i;
+
+	params->philo = ft_atoi(argv[1]);
+	params->nums_forks = params->philo;
+	params->time_die = 1000 * ft_atoi(argv[2]);
+	params->time_eat = 1000 * ft_atoi(argv[3]);
+	params->time_sleep = 1000 * ft_atoi(argv[4]);
+	params->nums_eat = 0;
 	if (argc == 6)
-	{
-		tmp->nums_eat = ft_atoi(argv[5]);
-		if (tmp->nums_eat < 1)
-		{
-			free(tmp);
-			return (-1);
-		}
-	}
-	*data = tmp;
-	free(tmp);
+		params->nums_eat = ft_atoi(argv[5]);
+	i = -1;
+	params->mutex = malloc(sizeof (pthread_mutex_t) * (params->philo + 2));
+	if (!params->mutex)
+		return (-1);
+	while(++i < (params->philo + 2))
+		pthread_mutex_init(&params->mutex[i], NULL);
+	params->flow = malloc(sizeof (pthread_t) * (params->philo));
+	if (!params->flow)
+		return (-1);
 	return (0);
 }
 
-int	ft_init_params(int argc, char **argv, t_parametrs **params)
+int	ft_init_params(int argc, char **argv, t_p *params)
 {
-	t_data *data;
-	t_parametrs *tmp;
 	int i;
-	int j;
 
-	i = ft_init_args(argc, argv, &data);
-	if (i < 0)
-		return(i);
-	tmp = (t_parametrs *)malloc(sizeof(t_parametrs) * data->philosophers);
-	if (!tmp)
-		return (0);
-	j = -1;
-	while (++j < data->philosophers)
-		ft_init_philo(tmp + j, j, data);
-	*params = tmp;
-	free(tmp);
+	if (ft_init_args(argc, argv, params))
+		return(-1);
+	i = -1;
+	pthread_mutex_lock(&params->mutex[params->philo]);
+	while (++i < params->philo)
+		ft_init_philo(params , i);
 	return (0);
 }

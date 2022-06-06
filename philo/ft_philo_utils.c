@@ -1,5 +1,24 @@
 #include "philo.h"
 
+int ft_check_args(int argc, char **argv)
+{
+	int i;
+	int	j;
+
+	if (argc < 5 || argc > 6)
+		return (-1);
+	i = 0;
+	while (++i < argc)
+	{
+		j = 0;
+		while (argv[i][j])
+			if(!ft_isdigit(argv[i][j++]) || (ft_atoi(argv[i]) <= 0 &&
+											 argv[i][0] != '0'))
+				return (-1);
+	}
+	return (0);
+}
+
 int	ft_atoi(const char *str)
 {
 	long int	res;
@@ -25,22 +44,20 @@ int	ft_atoi(const char *str)
 		if ((old < 0 && res > 0) || (old > 0 && res < 0))
 			return ((z == 1) * -1);
 	}
-	return (res * z);
+	return ((int)res * z);
 }
-/*
-int ft_free(int error_num, t_parametrs *params)
+
+int	ft_isdigit(int c)
 {
-	if (error_num == -1)
-	{
-		printf("ERROR_MALLOC_ARGS");
-		return (-1);
-	}
-	else if (error_num == -2 || error_num == -3)
-	{
-		printf("ERROR_INIT_ARGS");
-		//free(params->data);
-		return (-1);
-	}
-	free(params);
+	if (c >= '0' && c <= '9')
+		return (1);
 	return (0);
-}*/
+}
+
+long	time_now(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((long)time.tv_sec * 1000 + time.tv_usec / 1000);
+}

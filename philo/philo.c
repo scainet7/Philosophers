@@ -1,13 +1,22 @@
 #include "philo.h"
 
+void *ft_philo_process(void *link)
+{
+	t_p	params;
+
+	params = *(t_p *)link;
+	pthread_mutex_unlock(&params.mutex[params.philo]);
+	printf("philo %d\n", params.id);
+	return (0);
+}
+
 int main(int argc, char **argv)
 {
-	t_parametrs *params;
-	int	flag;
-	if (argc < 5 || argc > 6)
-		printf(RED"ERROR_INPUT_NUM_ARGUMENTS"END);
-	flag = ft_init_params(argc, argv, &params);
-	if (flag < 0)
-		return (0);
+	t_p params;
+
+	if (ft_check_args(argc, argv))
+		return (-1);
+	else if (ft_init_params(argc, argv, &params))
+		return (-1);
 	return 0;
 }

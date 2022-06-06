@@ -10,29 +10,27 @@
 # include <sys/time.h> // gettimeofday
 # include <pthread.h> //pthread_create
 
-typedef struct s_data
+
+typedef struct s_parameters
 {
-	int	philosophers;
+	int	philo;
 	int	nums_forks;
 	int	time_eat;
 	int	time_sleep;
 	int	time_die;
 	int	nums_eat;
-}	t_data;
+	pthread_mutex_t *mutex;
+	pthread_t	*flow;
 
-typedef struct s_parameters
-{
-	//int fork_l;
-	//int fotk_r;
-	//pthread_t philo;
-	int	index;
-	int count_eat;
-	long long int time_meal;
-	t_data *data;
+	int id;
+	int	fork_l;
+	int fork_r;
 
-}	t_parametrs;
-
-int	ft_atoi(const char *str);
-int ft_free(int error_num, t_parametrs *params);
-int	ft_init_params(int argc, char **argv, t_parametrs **params);
+}	t_p;
+int		ft_check_args(int argc, char **argv);
+int		ft_atoi(const char *str);
+int		ft_isdigit(int ch);
+int		ft_init_params(int argc, char **argv, t_p *params);
+void	*ft_philo_process(void *params);
+long	time_now(void);
 #endif //PHILO_H
