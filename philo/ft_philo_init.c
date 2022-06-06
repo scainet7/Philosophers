@@ -23,7 +23,7 @@ static int ft_init_args(int argc, char **argv, t_p *params)
 	params->time_die = 1000 * ft_atoi(argv[2]);
 	params->time_eat = 1000 * ft_atoi(argv[3]);
 	params->time_sleep = 1000 * ft_atoi(argv[4]);
-	params->nums_eat = 0;
+	params->nums_eat = -1;
 	if (argc == 6)
 		params->nums_eat = ft_atoi(argv[5]);
 	i = -1;

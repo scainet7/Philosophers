@@ -1,5 +1,13 @@
 #include "philo.h"
-
+int	ft_check_eat(const int *eat)
+{
+	if (*eat == -1)
+		return (1);
+	else if (*eat == 0)
+		return (0);
+	else
+		return (*eat);
+}
 int ft_check_args(int argc, char **argv)
 {
 	int i;

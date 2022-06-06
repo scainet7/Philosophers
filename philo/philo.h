@@ -27,10 +27,15 @@ typedef struct s_parameters
 	int fork_r;
 
 }	t_p;
-int		ft_check_args(int argc, char **argv);
+//libft
 int		ft_atoi(const char *str);
 int		ft_isdigit(int ch);
+//check
+int		ft_check_args(int argc, char **argv);
+int		ft_check_eat(const int *eat);
+//init
 int		ft_init_params(int argc, char **argv, t_p *params);
+//poc
 void	*ft_philo_process(void *params);
 long	time_now(void);
 #endif //PHILO_H
