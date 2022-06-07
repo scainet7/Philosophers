@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/snino/goinfre/Philosophers_snino/cmake-build-debug",
-		"source" : "/Users/snino/goinfre/Philosophers_snino"
+		"build" : "/Users/snino/Desktop/my/cmake-build-debug",
+		"source" : "/Users/snino/Desktop/my"
 	},
 	"version" : 
 	{

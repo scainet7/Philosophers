@@ -42,7 +42,7 @@ rule C_EXECUTABLE_LINKER__Philosophers_snino_Debug
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/snino/goinfre/Philosophers_snino -B/Users/snino/goinfre/Philosophers_snino/cmake-build-debug
+  command = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/snino/Desktop/my -B/Users/snino/Desktop/my/cmake-build-debug
   description = Re-running CMake...
   generator = 1
 

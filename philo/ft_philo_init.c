@@ -2,14 +2,18 @@
 
 static void ft_init_philo(t_p *params, int j)
 {
-
+	params->flag = 0;
 	params->id = j;
-	params->fork_r = j;
-	printf("%d\n", j);
-	if (j == (params->philo - 1))
-		params->fork_l = 0;
+	params->fork_l = j;
+	if (j == 0)
+		params->fork_r = params->philo - 1;
+	else if (j == (params->philo - 1))
+	{
+		params->fork_r = params->fork_l;
+		params->fork_l = j - 1;
+	}
 	else
-		params->fork_l = j + 1;
+		params->fork_r = j - 1;
 	pthread_create(&params->flow[j], NULL, ft_philo_process, params);
 	pthread_mutex_lock(&params->mutex[params->philo]);
 }

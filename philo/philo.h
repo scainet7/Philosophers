@@ -19,6 +19,7 @@ typedef struct s_parameters
 	int	time_sleep;
 	int	time_die;
 	int	nums_eat;
+	int flag;
 	pthread_mutex_t *mutex;
 	pthread_t	*flow;
 
@@ -32,7 +33,7 @@ int		ft_atoi(const char *str);
 int		ft_isdigit(int ch);
 //check
 int		ft_check_args(int argc, char **argv);
-int		ft_check_eat(const int *eat);
+int		ft_check_eat(int *eat);
 //init
 int		ft_init_params(int argc, char **argv, t_p *params);
 //poc
