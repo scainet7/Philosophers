@@ -14,7 +14,6 @@
 typedef struct s_parameters
 {
 	int	philo;
-	int	nums_forks;
 	int	time_eat;
 	int	time_sleep;
 	int	time_die;
@@ -23,9 +22,12 @@ typedef struct s_parameters
 	pthread_mutex_t *mutex;
 	pthread_t	*flow;
 
-	int id;
-	int	fork_l;
-	int fork_r;
+	int		id;
+	int		fork_l;
+	int		fork_r;
+	int		*otbrosil_kopita;
+	long	t_time;
+	long	start_eat;
 
 }	t_p;
 //libft
@@ -34,9 +36,11 @@ int		ft_isdigit(int ch);
 //check
 int		ft_check_args(int argc, char **argv);
 int		ft_check_eat(int *eat);
+int		ft_check_death(t_p *params, long time);
 //init
 int		ft_init_params(int argc, char **argv, t_p *params);
 //poc
 void	*ft_philo_process(void *params);
+void	ft_write(t_p *params, char *str, long time);
 long	time_now(void);
 #endif //PHILO_H

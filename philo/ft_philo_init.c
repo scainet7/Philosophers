@@ -1,7 +1,30 @@
 #include "philo.h"
 
+int ft_check_death(t_p *params, long time)
+{
+	if (time >= params->time_die)
+	{
+		pthread_mutex_lock(&params->mutex[params->philo + 2]);
+		*params->otbrosil_kopita = 1;
+		usleep(10);
+		printf("%ld Philo %d die\n", params->t_time + time, params->id + 1);
+		return (1);
+	}
+	else
+		return (0);
+}
+
+void	ft_write(t_p *params, char *str, long time)
+{
+	pthread_mutex_lock(&params->mutex[params->philo + 1]);
+	if (!*params->otbrosil_kopita)
+		printf("%ld Philo %d  %s\n", params->t_time + time, params->id + 1, str);
+	pthread_mutex_unlock(&params->mutex[params->philo + 1]);
+}
+
 static void ft_init_philo(t_p *params, int j)
 {
+	*params->otbrosil_kopita = 0;
 	params->flag = 0;
 	params->id = j;
 	params->fork_l = j;
@@ -23,10 +46,9 @@ static int ft_init_args(int argc, char **argv, t_p *params)
 	int i;
 
 	params->philo = ft_atoi(argv[1]);
-	params->nums_forks = params->philo;
-	params->time_die = 1000 * ft_atoi(argv[2]);
-	params->time_eat = 1000 * ft_atoi(argv[3]);
-	params->time_sleep = 1000 * ft_atoi(argv[4]);
+	params->time_die = ft_atoi(argv[2]);
+	params->time_eat = ft_atoi(argv[3]);
+	params->time_sleep = ft_atoi(argv[4]);
 	params->nums_eat = -1;
 	if (argc == 6)
 		params->nums_eat = ft_atoi(argv[5]);

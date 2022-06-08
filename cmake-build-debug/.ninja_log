@@ -1,10 +1,12 @@
 # ninja log v5
-1	69	1654608958000000000	build.ninja	e23cf1a510e0c9f9
-1	37	1654512842241817441	CMakeFiles/Philosophers_snino.dir/philo/ft_philo_init.c.o	3e4a892e9bf32a79
-1	37	1654512960903259763	CMakeFiles/Philosophers_snino.dir/philo/philo.c.o	c612b3b1ddf04b3f
-1	38	1654511484481801225	CMakeFiles/Philosophers_snino.dir/philo/ft_philo_utils.c.o	45474f3b7621aec4
-37	69	1654512960935890521	Philosophers_snino	1f6e0447dcd5ae81
-1	89	1654619481000000000	CMakeFiles/Philosophers_snino.dir/philo/ft_philo_init.c.o	44e124aa539ee219
-1	90	1654619481000000000	CMakeFiles/Philosophers_snino.dir/philo/ft_philo_utils.c.o	1a925e83f2cffbc0
-0	95	1654619481000000000	CMakeFiles/Philosophers_snino.dir/philo/philo.c.o	810307354ba75d4f
-95	152	1654619481000000000	Philosophers_snino	1f6e0447dcd5ae81
+1	69	1654706243000000000	build.ninja	e23cf1a510e0c9f9
+1	42	1654698575000000000	CMakeFiles/Philosophers_snino.dir/philo/ft_philo_init.c.o	44e124aa539ee219
+1	42	1654698575000000000	CMakeFiles/Philosophers_snino.dir/philo/philo.c.o	810307354ba75d4f
+1	40	1654698575000000000	CMakeFiles/Philosophers_snino.dir/philo/ft_philo_utils.c.o	1a925e83f2cffbc0
+42	78	1654698575000000000	Philosophers_snino	1f6e0447dcd5ae81
+1	45	1654706316000000000	CMakeFiles/Philosophers_snino.dir/philo/philo.c.o	810307354ba75d4f
+2	45	1654706316000000000	CMakeFiles/Philosophers_snino.dir/philo/ft_philo_init.c.o	44e124aa539ee219
+2	46	1654706316000000000	CMakeFiles/Philosophers_snino.dir/philo/ft_philo_utils.c.o	1a925e83f2cffbc0
+46	158	1654706316000000000	Philosophers_snino	1f6e0447dcd5ae81
+1	38	1654706405000000000	CMakeFiles/Philosophers_snino.dir/philo/ft_philo_init.c.o	44e124aa539ee219
+39	72	1654706405000000000	Philosophers_snino	1f6e0447dcd5ae81

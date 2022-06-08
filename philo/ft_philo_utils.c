@@ -1,4 +1,5 @@
 #include "philo.h"
+
 int	ft_check_eat(int *eat)
 {
 	if (*eat == -1)
@@ -8,6 +9,7 @@ int	ft_check_eat(int *eat)
 	else
 		return (--(*eat) + 1);
 }
+
 int ft_check_args(int argc, char **argv)
 {
 	int i;
@@ -67,5 +69,5 @@ long	time_now(void)
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return ((long)time.tv_sec * 1000 + time.tv_usec / 1000);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
