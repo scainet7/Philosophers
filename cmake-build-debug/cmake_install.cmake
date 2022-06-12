@@ -1,4 +1,4 @@
-# Install script for directory: /Users/snino/Desktop/my
+# Install script for directory: /goinfre/snino/Project_8
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/snino/Desktop/my/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/goinfre/snino/Project_8/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

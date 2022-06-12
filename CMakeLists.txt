@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.21)
-project(Philosophers_snino C)
+project(Project_8 C)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 11)
 
-add_executable(Philosophers_snino philo/philo.c philo/ft_philo_init.c philo/ft_philo_utils.c)
+include_directories(philo)
+
+add_executable(Project_8
+        philo/ft_philo_init.c
+        philo/ft_philo_utils.c
+        philo/philo.c
+        philo/philo.h)

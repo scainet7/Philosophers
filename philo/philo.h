@@ -1,6 +1,8 @@
 #ifndef PHILO_H
 # define PHILO_H
 
+# define BLU "\033[34m"
+# define GRE "\033[32m"
 # define RED "\033[31m"
 # define END "\033[0m\n"
 # include <unistd.h> // usleep, write
@@ -25,7 +27,7 @@ typedef struct s_parameters
 	int		id;
 	int		fork_l;
 	int		fork_r;
-	int		*otbrosil_kopita;
+	int		*fatum;
 	long	t_time;
 	long	start_eat;
 

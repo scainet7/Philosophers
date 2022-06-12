@@ -16,15 +16,21 @@ int ft_check_args(int argc, char **argv)
 	int	j;
 
 	if (argc < 5 || argc > 6)
+	{
+		printf(RED"ERROR\nPLEASE_CHECK_ARGUMENTS"END);
 		return (-1);
+	}
 	i = 0;
 	while (++i < argc)
 	{
 		j = 0;
 		while (argv[i][j])
 			if(!ft_isdigit(argv[i][j++]) || (ft_atoi(argv[i]) <= 0 &&
-											 argv[i][0] != '0'))
+				 argv[i][0] == '0'))
+			{
+				printf(RED"ERROR\nPLEASE_CHECK_ARGUMENTS"END);
 				return (-1);
+			}
 	}
 	return (0);
 }

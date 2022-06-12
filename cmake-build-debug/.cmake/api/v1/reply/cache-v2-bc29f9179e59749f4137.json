@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/snino/Desktop/my/cmake-build-debug"
+			"value" : "/goinfre/snino/Project_8/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -419,7 +419,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/snino/Desktop/my"
+			"value" : "/goinfre/snino/Project_8"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",
@@ -699,7 +699,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Philosophers_snino"
+			"value" : "Project_8"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -982,7 +982,7 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "Philosophers_snino_BINARY_DIR",
+			"name" : "Project_8_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -991,10 +991,10 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/snino/Desktop/my/cmake-build-debug"
+			"value" : "/goinfre/snino/Project_8/cmake-build-debug"
 		},
 		{
-			"name" : "Philosophers_snino_IS_TOP_LEVEL",
+			"name" : "Project_8_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -1006,7 +1006,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "Philosophers_snino_SOURCE_DIR",
+			"name" : "Project_8_SOURCE_DIR",
 			"properties" : 
 			[
 				{
@@ -1015,7 +1015,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/snino/Desktop/my"
+			"value" : "/goinfre/snino/Project_8"
 		}
 	],
 	"kind" : "cache",
