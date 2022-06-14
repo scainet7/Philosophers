@@ -1,0 +1,5 @@
+# ninja log v5
+0	94	1655201077053510646	CMakeFiles/Project_8.dir/philo/ft_philo_init.c.o	8034081fbfd2a53d
+0	95	1655201077052934735	CMakeFiles/Project_8.dir/philo/ft_philo_utils.c.o	93af1de3b956bb7
+0	95	1655201077053577856	CMakeFiles/Project_8.dir/philo/philo.c.o	f122188de126b4b8
+95	158	1655201077118968486	Project_8	3102c8a2ca740e61

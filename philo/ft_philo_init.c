@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_philo_init.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: snino <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/14 14:14:02 by snino             #+#    #+#             */
+/*   Updated: 2022/06/14 14:14:08 by snino            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-int ft_check_death(t_p *params, long time)
+int	ft_check_death(t_p *params, long time)
 {
 	if (time >= params->time_die)
 	{
 		pthread_mutex_lock(&params->mutex[params->philo + 1]);
 		*params->fatum = 1;
+		printf(BLU"%ld %d Philo die"END, params->t_time + time,
+			params->id + 1);
 		usleep(1000);
-		printf(BLU"%ld Philo %d die"END, params->t_time + time, params->id +
-		1);
 		return (1);
 	}
 	else
@@ -19,14 +31,15 @@ void	ft_write(t_p *params, char *str, long time)
 {
 	pthread_mutex_lock(&params->mutex[params->philo + 1]);
 	if (!*params->fatum)
-		printf(GRE"%ld Philo %d  %s"END, params->t_time + time, params->id +
-		1, str);
+		printf(GRE"%ld %d Philo %s"END, params->t_time + time,
+			params->id + 1, str);
 	pthread_mutex_unlock(&params->mutex[params->philo + 1]);
 }
 
-static void ft_init_philo(t_p *params, int j)
+static void	ft_init_philo(t_p *params, int j)
 {
 	*params->fatum = 0;
+	params->t_time = 0;
 	params->flag = 0;
 	params->id = j;
 	params->fork_l = j;
@@ -43,9 +56,9 @@ static void ft_init_philo(t_p *params, int j)
 	pthread_mutex_lock(&params->mutex[params->philo]);
 }
 
-static int ft_init_args(int argc, char **argv, t_p *params)
+static int	ft_init_args(int argc, char **argv, t_p *params)
 {
-	int i;
+	int	i;
 
 	params->philo = ft_atoi(argv[1]);
 	params->time_die = ft_atoi(argv[2]);
@@ -61,7 +74,7 @@ static int ft_init_args(int argc, char **argv, t_p *params)
 		printf(RED"ERROR_INIT_MALLOC_MUTEX"END);
 		return (1);
 	}
-	while(++i < (params->philo + 2))
+	while (++i < (params->philo + 2))
 		pthread_mutex_init(&params->mutex[i], NULL);
 	params->flow = malloc(sizeof (pthread_t) * (params->philo));
 	if (!params->flow)
@@ -74,15 +87,25 @@ static int ft_init_args(int argc, char **argv, t_p *params)
 
 int	ft_init_params(int argc, char **argv, t_p *params)
 {
-	int i;
+	int	i;
 
 	if (ft_init_args(argc, argv, params))
-		return(1);
+		return (1);
 	i = -1;
+	if (params->philo == 1)
+	{
+		printf(BLU"Philo 1"END);
+		return (1);
+	}
+	else if (params->philo >= 200)
+	{
+		printf(BLU"ERROR_MANY_PHILO"END);
+		return (1);
+	}
 	pthread_mutex_lock(&params->mutex[params->philo]);
 	while (++i < params->philo)
 	{
-		ft_init_philo(params , i);
+		ft_init_philo(params, i);
 		pthread_detach(params->flow[i]);
 	}
 	return (0);

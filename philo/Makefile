@@ -8,7 +8,7 @@ OBJ			= $(SRCS:%.c=%.o)
 
 CC			= gcc
 
-CFLAGS		= -g -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS		= -g -Wall -Wextra -Werror #-fsanitize=thread
 
 .PHONY:		all clean fclean re bonus
 

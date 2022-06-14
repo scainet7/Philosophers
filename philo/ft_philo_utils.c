@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_philo_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: snino <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/14 14:13:44 by snino             #+#    #+#             */
+/*   Updated: 2022/06/14 14:13:49 by snino            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	ft_check_eat(int *eat)
@@ -10,27 +22,29 @@ int	ft_check_eat(int *eat)
 		return (--(*eat) + 1);
 }
 
-int ft_check_args(int argc, char **argv)
+int	ft_check_args(int argc, char **argv)
 {
-	int i;
+	int	i;
 	int	j;
 
 	if (argc < 5 || argc > 6)
 	{
 		printf(RED"ERROR\nPLEASE_CHECK_ARGUMENTS"END);
-		return (-1);
+		return (1);
 	}
 	i = 0;
 	while (++i < argc)
 	{
 		j = 0;
 		while (argv[i][j])
-			if(!ft_isdigit(argv[i][j++]) || (ft_atoi(argv[i]) <= 0 &&
-				 argv[i][0] == '0'))
+		{
+			if (!ft_isdigit(argv[i][j++]) || (ft_atoi(argv[i]) <= 0 &&
+				argv[i][0] == '0'))
 			{
 				printf(RED"ERROR\nPLEASE_CHECK_ARGUMENTS"END);
-				return (-1);
+				return (1);
 			}
+		}
 	}
 	return (0);
 }
