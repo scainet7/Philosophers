@@ -15,6 +15,7 @@
 static int	ft_philo_sleep_and_thing(t_p *params, long time)
 {
 	long	start_sleep;
+	long	start_think;
 
 	ft_write(params, "is sleeping", time_now() - time);
 	start_sleep = time_now() - time;
@@ -60,6 +61,7 @@ static int	ft_philo_eat(t_p *params, long time)
 	}
 	pthread_mutex_unlock(&params->mutex[params->fork_l]);
 	pthread_mutex_unlock(&params->mutex[params->fork_r]);
+
 	return (0);
 }
 

@@ -1,3 +1,0 @@
-/goinfre/snino/Project_8/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/goinfre/snino/Project_8/cmake-build-debug/CMakeFiles/edit_cache.dir
-/goinfre/snino/Project_8/cmake-build-debug/CMakeFiles/Project_8.dir
