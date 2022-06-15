@@ -18,7 +18,7 @@ int	ft_check_death(t_p *params, long time)
 	{
 		sem_wait(params->sem_printf);
 		usleep(10);
-		printf(BLU"%ld %d Philo die"END, params->t_time + time, params->id + 1);
+		printf(BLU"%ld %d is died"END, params->t_time + time, params->id + 1);
 		return (1);
 	}
 	else
@@ -28,7 +28,7 @@ int	ft_check_death(t_p *params, long time)
 void	ft_write(t_p *params, char *str, long time)
 {
 	sem_wait(params->sem_printf);
-	printf(GRE"%ld %d Philo %s"END, params->t_time + time, params->id + 1, str);
+	printf(GRE"%ld %d %s"END, params->t_time + time, params->id + 1, str);
 	sem_post(params->sem_printf);
 }
 

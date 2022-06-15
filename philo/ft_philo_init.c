@@ -18,7 +18,7 @@ int	ft_check_death(t_p *params, long time)
 	{
 		pthread_mutex_lock(&params->mutex[params->philo + 1]);
 		*params->fatum = 1;
-		printf(BLU"%ld %d Philo die"END, params->t_time + time,
+		printf(BLU"%ld %d is died"END, params->t_time + time,
 			params->id + 1);
 		usleep(1000);
 		return (1);
@@ -31,7 +31,7 @@ void	ft_write(t_p *params, char *str, long time)
 {
 	pthread_mutex_lock(&params->mutex[params->philo + 1]);
 	if (!*params->fatum)
-		printf(GRE"%ld %d Philo %s"END, params->t_time + time,
+		printf(GRE"%ld %d %s"END, params->t_time + time,
 			params->id + 1, str);
 	pthread_mutex_unlock(&params->mutex[params->philo + 1]);
 }
