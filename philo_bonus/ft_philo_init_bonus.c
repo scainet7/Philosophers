@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_philo_init_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: snino <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/15 15:23:36 by snino             #+#    #+#             */
+/*   Updated: 2022/06/15 15:23:38 by snino            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_bonus.h"
 
 int	ft_check_death(t_p *params, long time)
@@ -5,8 +17,8 @@ int	ft_check_death(t_p *params, long time)
 	if (time >= params->time_die)
 	{
 		sem_wait(params->sem_printf);
-		printf(BLU"%ld %d Philo die"END, params->t_time + time, params->id + 1);
 		usleep(10);
+		printf(BLU"%ld %d Philo die"END, params->t_time + time, params->id + 1);
 		return (1);
 	}
 	else
@@ -22,27 +34,28 @@ void	ft_write(t_p *params, char *str, long time)
 
 static void	ft_init_philo(t_p *params)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	sem_unlink ("printf");
-	params->sem_printf = sem_open("printf", O_CREAT, 0660, 1);
+	params->sem_printf = sem_open("printf", O_CREAT, 0660, 0);
 	sem_post(params->sem_printf);
 	params->t_time = 0;
 	params->flag = 0;
-		while (++i < params->philo) {
-			params->id = i;
-			params->pid[i] = fork();
-			if (!params->pid[i]) {
-				ft_philo_process(params);
-				return;
-			}
-
+	while (++i < params->philo)
+	{
+		params->id = i;
+		params->pid[i] = fork();
+		if (!params->pid[i])
+		{
+			ft_philo_process(params);
+			return ;
 		}
-		waitpid( -1, &i, 0);
-		i = -1;
-		while (++i < params->philo)
-			kill(params->pid[i], SIGTERM);
+	}
+	waitpid(-1, &i, 0);
+	i = -1;
+	while (++i < params->philo)
+		kill(params->pid[i], SIGTERM);
 }
 
 static int	ft_init_args(int argc, char **argv, t_p *params)

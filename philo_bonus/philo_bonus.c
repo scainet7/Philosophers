@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_bonus.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: snino <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/15 15:22:54 by snino             #+#    #+#             */
+/*   Updated: 2022/06/15 15:23:00 by snino            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_bonus.h"
 
 static int	ft_philo_sleep_and_thing(t_p *params, long time)
 {
-	long	start_sleep;;
+	long	start_sleep;
 
 	ft_write(params, "is sleeping", time_now() - time);
 	start_sleep = time_now() - time;

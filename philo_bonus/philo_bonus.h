@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: snino <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/15 15:23:04 by snino             #+#    #+#             */
+/*   Updated: 2022/06/15 15:23:07 by snino            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_BONUS_H
 # define PHILO_BONUS_H
 
@@ -25,7 +37,7 @@ typedef struct s_parameters
 	pthread_t		*flow;
 	sem_t			*sem;
 	sem_t			*sem_printf;
-	pid_t 			*pid;
+	pid_t			*pid;
 
 	int				id;
 	long			t_time;
