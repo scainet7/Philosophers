@@ -12,43 +12,6 @@
 
 #include "philo.h"
 
-int	ft_check_eat(int *eat)
-{
-	if (*eat == -1)
-		return (1);
-	else if (*eat == 0)
-		return (0);
-	else
-		return (--(*eat) + 1);
-}
-
-int	ft_check_args(int argc, char **argv)
-{
-	int	i;
-	int	j;
-
-	if (argc < 5 || argc > 6)
-	{
-		printf(RED"ERROR\nPLEASE_CHECK_ARGUMENTS"END);
-		return (1);
-	}
-	i = 0;
-	while (++i < argc)
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (!ft_isdigit(argv[i][j++]) || (ft_atoi(argv[i]) <= 0 &&
-				argv[i][0] == '0'))
-			{
-				printf(RED"ERROR\nPLEASE_CHECK_ARGUMENTS"END);
-				return (1);
-			}
-		}
-	}
-	return (0);
-}
-
 int	ft_atoi(const char *str)
 {
 	long int	res;

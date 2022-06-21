@@ -12,7 +12,7 @@
 
 NAME		= philo
 
-SRCS		= philo.c	ft_philo_utils.c	ft_philo_init.c
+SRCS		= philo.c	ft_philo_utils.c	ft_philo_init.c ft_check.c
 
 HEADER		= philo.h
 
@@ -20,7 +20,7 @@ OBJ			= $(SRCS:%.c=%.o)
 
 CC			= gcc
 
-CFLAGS		= -g -Wall -Wextra -Werror #-fsanitize=thread
+CFLAGS		= -g -Wall -Wextra -Werror -fsanitize=thread
 
 .PHONY:		all clean fclean re bonus
 
@@ -30,7 +30,7 @@ $(NAME)	:	$(OBJ)
 		@CC $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o		: %.c $(HEADER)
-		$(CC) $(CFLAGS) -c $< -o $@ -I
+		$(CC) $(CFLAGS) -c $< -o $@
 
 clean	:
 		@rm -f $(OBJ)
