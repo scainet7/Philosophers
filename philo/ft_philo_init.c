@@ -12,53 +12,25 @@
 
 #include "philo.h"
 
-void	ft_write(t_p *params, char *str, long time)
+int	ft_check_death(t_p *params, long time, int i)
+{
+	if (time >= params->time_die)
+	{
+		pthread_mutex_lock(&params->mutex[params->philo + 1]);
+		printf(BLU"%ld %d is died"END, params->t_time + time,
+			i + 1);
+		usleep(1000);
+		return (1);
+	}
+	else
+		return (0);
+}
+
+void	ft_write(t_p *params, char *str, long time, int i)
 {
 	pthread_mutex_lock(&params->mutex[params->philo + 1]);
-	if (!params->fatum[params->id])
-		printf(GRE"%ld %d %s"END, params->t_time + time,
-			params->id + 1, str);
+    printf(GRE"%ld %d %s"END, params->t_time + time, i + 1, str);
 	pthread_mutex_unlock(&params->mutex[params->philo + 1]);
-}
-
-void	ft_init_philo(t_p *params, int j)
-{
-    params->id = j;
-    params->fork_l = j;
-    if (j == 0)
-        params->fork_r = params->philo - 1;
-    else if (j == (params->philo - 1))
-    {
-        params->fork_r = params->fork_l;
-        params->fork_l = j - 1;
-    }
-    else
-        params->fork_r = j - 1;
-    pthread_create(&params->flow[j], NULL, ft_philo_process, params);
-    pthread_mutex_lock(&params->mutex[params->philo]);
-}
-
-static int ft_init_eat_and_death(int argc, char **argv, t_p *params)
-{
-    int i;
-
-    params->nums_eat = malloc(sizeof (int) * params->philo);
-    if (!params->nums_eat)
-        return (1);
-    params->fatum = malloc(sizeof (int) * params->philo);
-    if (!params->fatum)
-        return (1);
-    i = -1;
-    while (++i < params->philo)
-    {
-        params->nums_eat[i] = -1;
-        params->fatum[i] = 0;
-    }
-    i = -1;
-    if (argc == 6)
-        while (++i < params->philo)
-            params->nums_eat[i] = ft_atoi(argv[5]);
-    return (0);
 }
 
 static int	ft_init_args(int argc, char **argv, t_p *params)
@@ -69,8 +41,9 @@ static int	ft_init_args(int argc, char **argv, t_p *params)
 	params->time_die = ft_atoi(argv[2]);
 	params->time_eat = ft_atoi(argv[3]);
 	params->time_sleep = ft_atoi(argv[4]);
-    if (ft_init_eat_and_death(argc, argv, params))
-            return (1);
+	params->nums_eat = -1;
+	if (argc == 6)
+		params->nums_eat = ft_atoi(argv[5]);
 	i = -1;
 	params->mutex = malloc(sizeof (pthread_mutex_t) * (params->philo + 4));
 	if (!params->mutex)
@@ -86,6 +59,7 @@ static int	ft_init_args(int argc, char **argv, t_p *params)
 		printf(RED"ERROR_INIT_MALLOC_FLOW"END);
 		return (1);
 	}
+    pthread_mutex_lock(&params->mutex[params->philo + 2]);
 	return (0);
 }
 
@@ -93,6 +67,7 @@ int	ft_init_params(int argc, char **argv, t_p *params)
 {
 	int	i;
 
+    params->id = malloc(1000);
 	if (ft_init_args(argc, argv, params))
 		return (1);
 	i = -1;
@@ -106,11 +81,14 @@ int	ft_init_params(int argc, char **argv, t_p *params)
 		printf(BLU"ERROR_MANY_PHILO"END);
 		return (1);
 	}
-	pthread_mutex_lock(&params->mutex[params->philo]);
 	while (++i < params->philo)
 	{
-		ft_init_philo(params, i);
-		pthread_detach(params->flow[i]);
+        pthread_mutex_lock(&params->mutex[params->philo]);
+        pthread_mutex_lock(&params->mutex[params->philo + 3]);
+        *params->id = i;
+        pthread_mutex_unlock(&params->mutex[params->philo + 3]);
+        pthread_create(&params->flow[i], NULL, ft_philo_process, params);
+        pthread_detach(params->flow[i]);
 	}
 	return (0);
 }

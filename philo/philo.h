@@ -30,31 +30,28 @@ typedef struct s_parameters
 	int				time_eat;
 	int				time_sleep;
 	int				time_die;
-    int				*nums_eat;
+	int				nums_eat;
 	pthread_mutex_t	*mutex;
 	pthread_t		*flow;
 
-	int				id;
-	int				fork_l;
-	int				fork_r;
-	int				*fatum;
-	long			t_time;
-	long			start_eat;
+	int				*id;
+//	int				fork_l;
+//	int				fork_r;
+	long		t_time;
+	long		start_eat;
 
 }	t_p;
 //libft
 int		ft_atoi(const char *str);
 int		ft_isdigit(int ch);
 //check
-void    ft_check_stop(t_p *params);
 int		ft_check_args(int argc, char **argv);
-int	ft_check_eat(t_p *params);
-int		ft_check_death(t_p *params, long time);
+int		ft_check_eat(int *eat);
+int		ft_check_death(t_p *params, long time, int i);
 //init
-void	ft_init_philo(t_p *params, int j);
 int		ft_init_params(int argc, char **argv, t_p *params);
 //poc
 void	*ft_philo_process(void *link);
-void	ft_write(t_p *params, char *str, long time);
+void	ft_write(t_p *params, char *str, long time, int i);
 long	time_now(void);
 #endif //PHILO_H
