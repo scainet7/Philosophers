@@ -35,10 +35,10 @@ typedef struct s_parameters
 	pthread_t		*flow;
 
 	int				*id;
-//	int				fork_l;
-//	int				fork_r;
-	long		t_time;
-	long		start_eat;
+	int				fork_l;
+	int				fork_r;
+	long			t_time;
+	long			start_eat;
 
 }	t_p;
 //libft

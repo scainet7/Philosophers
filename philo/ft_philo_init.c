@@ -67,7 +67,7 @@ int	ft_init_params(int argc, char **argv, t_p *params)
 {
 	int	i;
 
-    params->id = malloc(1000);
+    params->id = malloc(sizeof (int *));
 	if (ft_init_args(argc, argv, params))
 		return (1);
 	i = -1;
