@@ -30,7 +30,7 @@ $(NAME)	:	$(OBJ)
 		@CC $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o		: %.c $(HEADER)
-		$(CC) $(CFLAGS) -c $< -o $@ -I
+		$(CC) $(CFLAGS) -c $< -o $@
 
 clean	:
 		@rm -f $(OBJ)

@@ -37,8 +37,6 @@ static int	ft_philo_sleep_and_thing(t_p *params, long time)
 
 static int	ft_philo_eat(t_p *params, long time)
 {
-	if (params->id % 2 == 0)
-		usleep(2500);
 	sem_wait(params->sem);
 	sem_wait(params->sem);
 	ft_write(params, "has taken a fork", time_now() - time);
@@ -62,15 +60,21 @@ void	ft_philo_process(t_p *params)
 
 	if (ft_check_death(params, params->t_time))
 		return ;
-	while (ft_check_eat(&params->nums_eat))
+	if (params->philo != 1)
 	{
-		time = time_now();
-		if (ft_philo_eat(params, time))
-			break ;
-		if (ft_philo_sleep_and_thing(params, time))
-			break ;
-		params->t_time += time_now() - time;
+		while (ft_check_eat(&params->nums_eat))
+		{
+			time = time_now();
+			if (ft_philo_eat(params, time))
+				break ;
+			if (ft_philo_sleep_and_thing(params, time))
+				break ;
+			params->t_time += time_now() - time;
+		}
 	}
+	else
+		printf(GRE"0 1 philo took 1 fork\n%d %d philo died"END,
+			params->time_die, params->id + 1);
 	usleep(params->time_die * 1000);
 	return ;
 }

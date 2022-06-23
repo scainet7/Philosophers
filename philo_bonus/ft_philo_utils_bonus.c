@@ -38,7 +38,7 @@ int	ft_check_args(int argc, char **argv)
 		j = 0;
 		while (argv[i][j])
 		{
-			if (!ft_isdigit(argv[i][j++]) || (ft_atoi(argv[i]) <= 0 &&
+			if (!ft_isdigit(argv[i][j++]) || (ft_atoi(argv[i]) <= 0 ||
 				argv[i][0] == '0'))
 			{
 				printf(RED"ERROR\nPLEASE_CHECK_ARGUMENTS"END);

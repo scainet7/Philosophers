@@ -29,7 +29,7 @@ int	ft_check_death(t_p *params, long time, int i)
 void	ft_write(t_p *params, char *str, long time, int i)
 {
 	pthread_mutex_lock(&params->mutex[params->philo + 1]);
-    printf(GRE"%ld %d %s"END, params->t_time + time, i + 1, str);
+	printf(GRE"%ld %d %s"END, params->t_time + time, i + 1, str);
 	pthread_mutex_unlock(&params->mutex[params->philo + 1]);
 }
 
@@ -59,7 +59,6 @@ static int	ft_init_args(int argc, char **argv, t_p *params)
 		printf(RED"ERROR_INIT_MALLOC_FLOW"END);
 		return (1);
 	}
-    pthread_mutex_lock(&params->mutex[params->philo + 2]);
 	return (0);
 }
 
@@ -67,28 +66,24 @@ int	ft_init_params(int argc, char **argv, t_p *params)
 {
 	int	i;
 
-    params->id = malloc(sizeof (int *));
 	if (ft_init_args(argc, argv, params))
 		return (1);
+	params->id = malloc(sizeof (int *));
+	if (!params->id)
+	{
+		printf(RED"ERROR_INIT_MALLOC_ID"END);
+		return (1);
+	}
+	pthread_mutex_lock(&params->mutex[params->philo + 2]);
 	i = -1;
-	if (params->philo == 1)
-	{
-		printf(BLU"Philo 1"END);
-		return (1);
-	}
-	else if (params->philo > 200)
-	{
-		printf(BLU"ERROR_MANY_PHILO"END);
-		return (1);
-	}
 	while (++i < params->philo)
 	{
-        pthread_mutex_lock(&params->mutex[params->philo]);
-        pthread_mutex_lock(&params->mutex[params->philo + 3]);
-        *params->id = i;
-        pthread_mutex_unlock(&params->mutex[params->philo + 3]);
-        pthread_create(&params->flow[i], NULL, ft_philo_process, params);
-        pthread_detach(params->flow[i]);
+		pthread_mutex_lock(&params->mutex[params->philo]);
+		pthread_mutex_lock(&params->mutex[params->philo + 3]);
+		*params->id = i;
+		pthread_mutex_unlock(&params->mutex[params->philo + 3]);
+		pthread_create(&params->flow[i], NULL, ft_philo_process, params);
+		pthread_detach(params->flow[i]);
 	}
 	return (0);
 }

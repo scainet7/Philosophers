@@ -74,7 +74,7 @@ static int	ft_init_args(int argc, char **argv, t_p *params)
 		return (1);
 	}
 	params->pid = malloc(sizeof (pid_t) * params->philo);
-	if (!params->flow)
+	if (!params->pid)
 	{
 		printf(RED"ERROR_INIT_MALLOC_PID"END);
 		return (1);
@@ -88,16 +88,6 @@ int	ft_init_params(int argc, char **argv, t_p *params)
 {
 	if (ft_init_args(argc, argv, params))
 		return (1);
-	if (params->philo == 1)
-	{
-		printf(BLU"Philo 1"END);
-		return (1);
-	}
-	else if (params->philo >= 200)
-	{
-		printf(BLU"ERROR_MANY_PHILO"END);
-		return (1);
-	}
 	ft_init_philo(params);
 	return (0);
 }
