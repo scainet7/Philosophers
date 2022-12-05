@@ -6,36 +6,42 @@
 #    By: snino <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 15:42:20 by snino             #+#    #+#              #
-#    Updated: 2022/06/14 15:42:25 by snino            ###   ########.fr        #
+#    Updated: 2022/12/05 21:13:58 by snino            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= philo
+NAME				:=	philo
 
-SRCS		= philo.c	ft_philo_utils.c	ft_philo_init.c
+CC					:=	gcc
 
-HEADER		= philo.h
+CFLAGS				:=	-g -Wall -Wextra -Werror #-fsanitize=thread
 
-OBJ			= $(SRCS:%.c=%.o)
+SRCS				:=	philo.c\
+						ft_philo_init.c\
+						ft_philo_utils.c\
 
-CC			= gcc
+HEADER				:=	philo.h
 
-CFLAGS		= -g -Wall -Wextra -Werror -fsanitize=thread
+OBJ_DIR				:=	obj
 
-.PHONY:		all clean fclean re bonus
+OBJ 				:=	$(addprefix $(OBJ_DIR)/, $(patsubst %.c, %.o, $(SRCS)))
 
-all		:	$(NAME)
+.PHONY				:	all clean fclean re
 
-$(NAME)	:	$(OBJ)
-		@CC $(CFLAGS) $(OBJ) -o $(NAME)
+all					:	$(NAME)
 
-%.o		: %.c $(HEADER)
-		$(CC) $(CFLAGS) -c $< -o $@
+$(NAME)				:	$(HEADER) $(OBJ)
+						$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-clean	:
-		@rm -f $(OBJ)
+$(OBJ_DIR)/%.o		:  	%.c $(HEADER)
+						@mkdir -p $(OBJ_DIR)
+	 					$(CC) $(CFLAGS) -c $< -o $@
 
-fclean	: clean
-		@rm -f $(NAME)
+clean				:
+						@rm -rf $(OBJ)
 
-re		: fclean all
+fclean				:	clean
+						@$(RM) $(NAME)
+						@rm -rf obj
+
+re					:	fclean all
